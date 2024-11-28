@@ -19,7 +19,17 @@ def read_and_write_file():
        
     except FileNotFoundError:
         print("Error: The file does not exist.")
-    
+        # Ask the user to create a file optionally
+        create_option = input("Would you like to create this file? (yes/no?):  ")
+        if create_option == 'yes':
+            # ask user for content to write in the file
+            new_content = input("Enter the content to write in the new file: ")
+            with open(input_filename, 'w') as new_file:
+                new_file.write(new_content)
+            print(f"File {input_filename} has been created with your content.")
+        
+        else:
+            print("No file was created.") 
     except PermissionError:
          print("Error: You do not have permission to read this file.")
          
